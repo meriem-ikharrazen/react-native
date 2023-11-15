@@ -1,20 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import * as Font from "expo-font";
+import { globalStyles } from "../../../styles/global";
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Home screen</Text>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.titleText}>Home screen</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 24,
-  },
-  title: {
-    fontFamily: "Nunito",
-  },
-});
