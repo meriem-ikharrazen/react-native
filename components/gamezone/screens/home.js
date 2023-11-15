@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Text, View, Button, FlatList, TouchableOpacity } from "react-native";
 import * as Font from "expo-font";
 import { globalStyles } from "../../../styles/global";
+import Card from "../../../shared/card";
 
 export default function Home({ navigation }) {
   //Pour la navigation on peut aussi utiliser navigation.push("ReviewDetails");
@@ -25,7 +26,10 @@ export default function Home({ navigation }) {
           <TouchableOpacity
             onPress={() => navigation.navigate("ReviewDetails", item)}
           >
-            <Text style={globalStyles.item}>{item.title}</Text>
+            {/* <Text style={globalStyles.item}>{item.title}</Text> */}
+            <Card>
+              <Text>{item.title}</Text>
+            </Card>
           </TouchableOpacity>
         )}
       />
