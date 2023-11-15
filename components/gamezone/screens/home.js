@@ -1,8 +1,17 @@
 import { useState } from "react";
-import { Text, View, Button, FlatList, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  Button,
+  FlatList,
+  TouchableOpacity,
+  Modal,
+  StyleSheet,
+} from "react-native";
 import * as Font from "expo-font";
 import { globalStyles } from "../../../styles/global";
 import Card from "../../../shared/card";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function Home({ navigation }) {
   //Pour la navigation on peut aussi utiliser navigation.push("ReviewDetails");
@@ -13,6 +22,8 @@ export default function Home({ navigation }) {
     { title: "review 3", rating: 3, body: "body 3", key: "3" },
   ]);
 
+  const [modalOpen, setOpneModal] = useState(false);
+
   return (
     <View style={globalStyles.container}>
       {/* <Text style={globalStyles.titleText}>Home screen</Text>
@@ -20,6 +31,26 @@ export default function Home({ navigation }) {
         title="Go to detail page"
         onPress={() => navigation.navigate("ReviewDetails")}
       /> */}
+
+      <Modal visible={modalOpen} animationType="slide">
+        <View style={styles.modalContent}>
+          <MaterialIcons
+            name="close"
+            size={24}
+            style={{ ...styles.modalToggle, ...styles.modalClose }}
+            onPress={() => setOpneModal(false)}
+          />
+          <Text>Hello from the modal :)</Text>
+        </View>
+      </Modal>
+
+      <MaterialIcons
+        name="add"
+        size={24}
+        style={styles.modalToggle}
+        onPress={() => setOpneModal(true)}
+      />
+
       <FlatList
         data={reviews}
         renderItem={({ item }) => (
@@ -36,3 +67,22 @@ export default function Home({ navigation }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  modalContent: {
+    flex: 1,
+  },
+  modalToggle: {
+    marginBottom: 10,
+    borderWidth: 10,
+    borderColor: "#f2f2f2",
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  modalClose: {
+    borderColor: "white",
+    marginBottom: 0,
+    marginTop: 20,
+  },
+});
