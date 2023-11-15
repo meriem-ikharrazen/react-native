@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
+import { globalStyles } from "../../../styles/global";
 
-export default function ReviewDetails({ navigation }) {
+export default function ReviewDetails({ navigation, route }) {
+  const { title, rating, body } = route.params;
   return (
     <View style={styles.container}>
-      <Text>ReviewDetails screen</Text>
+      <Text style={{ marginBottom: 10 }}>ReviewDetails screen</Text>
+      <Text>{title}</Text>
+      <Text>{rating}</Text>
+      <Text>{body}</Text>
       <Button title="Go to home page" onPress={() => navigation.goBack()} />
     </View>
   );
