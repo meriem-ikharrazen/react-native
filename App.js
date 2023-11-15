@@ -21,9 +21,9 @@ export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   if (fontsLoaded) {
-    // return <Home />;
-    return <Navigator />;
-    // return <DrawerNavigation />;
+    //   // return <Home />;
+    // return <Navigator />;
+    return <DrawerNavigation />;
   }
   return (
     <AppLoading

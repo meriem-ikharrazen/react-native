@@ -7,11 +7,15 @@ import {
   TouchableOpacity,
   Modal,
   StyleSheet,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 import * as Font from "expo-font";
 import { globalStyles } from "../../../styles/global";
 import Card from "../../../shared/card";
 import { MaterialIcons } from "@expo/vector-icons";
+import ReviewForm from "./reviewForm";
 
 export default function Home({ navigation }) {
   //Pour la navigation on peut aussi utiliser navigation.push("ReviewDetails");
@@ -24,6 +28,12 @@ export default function Home({ navigation }) {
 
   const [modalOpen, setOpneModal] = useState(false);
 
+  const addReview = (review) => {
+    review.key = (reviews.length + 1).toString();
+    setReviews((prev) => [...prev, review]);
+    setOpneModal(false);
+  };
+
   return (
     <View style={globalStyles.container}>
       {/* <Text style={globalStyles.titleText}>Home screen</Text>
@@ -33,15 +43,19 @@ export default function Home({ navigation }) {
       /> */}
 
       <Modal visible={modalOpen} animationType="slide">
-        <View style={styles.modalContent}>
-          <MaterialIcons
-            name="close"
-            size={24}
-            style={{ ...styles.modalToggle, ...styles.modalClose }}
-            onPress={() => setOpneModal(false)}
-          />
-          <Text>Hello from the modal :)</Text>
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.modalContent}>
+            <MaterialIcons
+              name="close"
+              size={24}
+              style={{ ...styles.modalToggle, ...styles.modalClose }}
+              onPress={() => setOpneModal(false)}
+            />
+            {/* <Text>Hello</Text> */}
+
+            <ReviewForm addReview={addReview} />
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
 
       <MaterialIcons
