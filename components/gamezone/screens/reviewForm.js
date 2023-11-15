@@ -25,7 +25,14 @@ export default function ReviewForm({ addReview }) {
           addReview(values);
         }}
       >
-        {({ handleChange, values, handleSubmit }) => {
+        {({
+          handleChange,
+          values,
+          handleSubmit,
+          errors,
+          touched,
+          handleBlur,
+        }) => {
           return (
             <View>
               <TextInput
@@ -33,20 +40,32 @@ export default function ReviewForm({ addReview }) {
                 placeholder="Review title"
                 onChangeText={handleChange("title")}
                 value={values.title}
+                onBlur={handleBlur("title")}
               />
+              <Text style={globalStyles.errorText}>
+                {touched.title && errors.title}
+              </Text>
               <TextInput
                 style={globalStyles.input}
                 placeholder="Review body"
                 onChangeText={handleChange("body")}
                 value={values.body}
+                onBlur={handleBlur("body")}
               />
+              <Text style={globalStyles.errorText}>
+                {touched.body && errors.body}
+              </Text>
               <TextInput
                 style={globalStyles.input}
                 placeholder="Rating (1-5)"
                 onChangeText={handleChange("rating")}
+                onBlur={handleBlur("rating")}
                 value={values.rating}
                 keyboardType="numeric"
               />
+              <Text style={globalStyles.errorText}>
+                {touched.rating && errors.rating}
+              </Text>
               <Button title="submit" color="maroon" onPress={handleSubmit} />
             </View>
           );
