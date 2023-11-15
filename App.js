@@ -22,8 +22,8 @@ export default function App() {
 
   if (fontsLoaded) {
     // return <Home />;
-    // return <Navigator />;
-    return <DrawerNavigation />;
+    return <Navigator />;
+    // return <DrawerNavigation />;
   }
   return (
     <AppLoading

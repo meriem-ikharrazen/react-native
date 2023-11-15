@@ -3,10 +3,11 @@ import ReviewDetails from "../components/gamezone/screens/reviewDetails";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Header from "../shared/header";
 
 const Stack = createNativeStackNavigator();
 
-export default function Router() {
+export default function Router({ navigation }) {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -23,9 +24,7 @@ export default function Router() {
           name="Home"
           component={Home}
           options={{
-            title: "My home",
-            headerStyle: { backgroundColor: "coral" },
-            headerTintColor: "white",
+            headerTitle: () => <Header navigation={navigation} />,
           }}
         />
       </Stack.Navigator>

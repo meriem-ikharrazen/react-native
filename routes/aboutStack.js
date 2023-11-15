@@ -2,6 +2,7 @@ import About from "../components/gamezone/screens/about";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Header from "../shared/header";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,9 +14,7 @@ export default function AboutStack() {
           name="About"
           component={About}
           options={{
-            title: "My home",
-            headerStyle: { backgroundColor: "coral" },
-            headerTintColor: "white",
+            headerTitle: () => <Header />,
           }}
         />
       </Stack.Navigator>
